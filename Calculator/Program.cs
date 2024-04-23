@@ -14,6 +14,7 @@ namespace Calculator
 
             while (true)
             {
+                Console.Clear();
                 Console.WriteLine("Welcome to the Calculator\n");
                 int operation = GetOperationFromUser();
                 Console.Clear();
@@ -31,16 +32,28 @@ namespace Calculator
             }
 
         }
+
+        /// <summary>
+        /// Takes the result of the calculation and displays it for the user
+        /// </summary>
+        /// <param name="firstNumber">First number entered by the user</param>
+        /// <param name="symbol">Symbol representing the operation performed</param>
+        /// <param name="secondNumber">Second number entered by the user</param>
+        /// <param name="result">The result of the calculation</param>
         static void DisplayResult(double firstNumber, char symbol, double secondNumber, double result)
-        {
-            Console.Clear();
+        { 
             string message = $"The result of {firstNumber} {symbol} {secondNumber} = {result:0..##}";
             Console.WriteLine(message);
             Console.WriteLine("\n\nPress any key to perform a new sum");
             Console.ReadLine();
-            Console.Clear();
         }
 
+        /// <summary>
+        /// Prompts the user to enter a number for the calculation
+        /// </summary>
+        /// <param name="prompt">Informs the user which parameter they are entering</param>
+        /// <param name="operation">This is used to check whether divide by 0 should be avoided, 4 is division and so an extra check takes place</param>
+        /// <returns>Returns int of users selection</returns>
         static int GetIntegerFromUser(string prompt, int operation = 0)
         {
 
@@ -62,6 +75,10 @@ namespace Calculator
             }
         }
 
+        /// <summary>
+        /// Prompts the user to select an operation
+        /// </summary>
+        /// <returns>Returns an int from 1-4 according to the operators chart</returns>
         static int GetOperationFromUser()
         {
             Console.WriteLine("1: Addition");
@@ -89,6 +106,13 @@ namespace Calculator
             }
         }
 
+        /// <summary>
+        /// Calculates the result using a switch statement and assigns the symbol for use in DisplayResult()
+        /// </summary>
+        /// <param name="firstNumber">First number the user selected</param>
+        /// <param name="secondNumber">Second number the user selected</param>
+        /// <param name="operation">Operation the user selected</param>
+        /// <returns>Returns tuple containing the final result and the symbol of the calculation to be used in DisplayResult()</returns>
         static (double Result, char Symbol) CalculateResult(double firstNumber, double secondNumber, int operation)
         {
             double result = 0D;
